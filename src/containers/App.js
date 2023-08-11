@@ -1,57 +1,43 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux';
 // import Scroll from './Scroll';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import './App.css';
 import ErrorBoundry from '../components/ErrorBoundry';
+import { setSearchField, requestRobots } from '../actions';
 
-function App() {
+const mapStateToProps = state => {
 
-    // constructor() {
+    return {
+        searchField: state.searchRobots.searchField,
+        robots: state.requestRobots.robots,
+        isPending: state.requestRobots.isPending,
+        error: state.requestRobots.error
+    }
+}
 
-    //     super()
-    //     this.state = {
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+        onRequestRobots: () => dispatch(requestRobots())
+    }
+}
 
-    //         robots: [],
-    //         searchfield: ''
-    //     }
-    // }
-
-    const [robots, setRobots] = useState([])
-    const [searchfield, setSearchfield] = useState('')
-
-    // componentDidMount() {
-
-    //     fetch('https://jsonplaceholder.typicode.com/users')
-    //         .then(response => {
-
-    //             return response.json();
-    //         })
-    //         .then(users => {
-
-    //             this.setState({ robots: users })
-    //         });
-    // }
+function App({ searchField, onSearchChange, onRequestRobots, robots, isPending }) {
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
-            .then(users => setRobots(users));
+
+        onRequestRobots();
+
     }, []);
-
-
-    const onSearchChange = (event) => {
-
-        setSearchfield(event.target.value);
-
-    }
 
     const filteredRobots = robots.filter(robot => {
 
-        return robot.name.toLowerCase().includes(searchfield.toLowerCase());
+        return robot.name.toLowerCase().includes(searchField.toLowerCase());
     });
 
-    if (robots.length === 0) {
+    if (isPending) {
 
         return <h1>Loading</h1>
     } else {
@@ -80,4 +66,4 @@ function App() {
 
 
 
-export default App
+export default connect(mapStateToProps, mapDispatchToProps)(App);
