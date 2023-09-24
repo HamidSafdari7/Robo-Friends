@@ -9,6 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import 'tachyons';
 import App from './containers/App';
 import { searchRobots, requestRobots } from './reducers';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const logger = createLogger();
 const rootReducer = combineReducers({searchRobots, requestRobots})
@@ -22,6 +23,9 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+
+
+serviceWorkerRegistration.unregister();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
