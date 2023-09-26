@@ -7,7 +7,8 @@ const SearchBox = (props) => {
         <>
             <div className='pa2'>
 
-                <input 
+                <input
+                    aria-label='Search Robots' 
                     className='pa3 ba b--green bg-lightest-blue'
                     type="search"
                     placeholder='Search robots'
