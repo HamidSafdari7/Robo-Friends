@@ -1,6 +1,11 @@
 {
   "name": "first-app",
   "homepage": "https://HamidSafdari7.github.io/Robo-Friends",
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -55,5 +60,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@cfaester/enzyme-adapter-react-18": "^0.7.1",
+    "enzyme-to-json": "^3.6.2",
+    "redux-mock-store": "^1.5.4"
   }
 }

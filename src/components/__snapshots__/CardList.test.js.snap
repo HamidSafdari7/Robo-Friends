@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expect to render CardList component 1`] = `
+<Fragment>
+  <div>
+    <Card
+      email="cr7@gmail.com"
+      id={1}
+      key="0"
+      name="Cristiano Ronaldo"
+      username="CR7"
+    />
+  </div>
+</Fragment>
+`;
